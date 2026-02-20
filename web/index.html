@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Processing Pipeline</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Document Processing</h1>
+            <p>Upload documents for AI-powered extraction using Mistral OCR</p>
+        </header>
+
+        <main>
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <p>Drag & drop files here or <label for="fileInput" class="browse-link">browse</label></p>
+                    <input type="file" id="fileInput" accept=".pdf,.png,.jpg,.jpeg,.tiff" hidden>
+                    <span class="file-types">Supports: PDF, PNG, JPG, TIFF</span>
+                </div>
+                <div class="upload-progress" id="uploadProgress" hidden>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span id="progressText">Uploading...</span>
+                </div>
+            </section>
+
+            <!-- Documents List -->
+            <section class="documents-section">
+                <div class="section-header">
+                    <h2>Processed Documents</h2>
+                    <button class="btn-refresh" onclick="loadDocuments()">Refresh</button>
+                </div>
+                <div class="documents-list" id="documentsList">
+                    <p class="empty-state">No documents yet. Upload a file to get started.</p>
+                </div>
+            </section>
+
+            <!-- Document Detail Modal -->
+            <div class="modal" id="documentModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 id="modalTitle">Document Details</h2>
+                        <button class="btn-close" onclick="closeModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="confidence-display">
+                            <span>Confidence:</span>
+                            <span class="confidence-badge" id="modalConfidence">--</span>
+                        </div>
+                        <div class="export-buttons">
+                            <button onclick="exportDocument('markdown')">Export MD</button>
+                            <button onclick="exportDocument('json')">Export JSON</button>
+                            <button onclick="exportDocument('csv')">Export CSV</button>
+                            <button onclick="exportDocument('xml')">Export XML</button>
+                        </div>
+                        <div class="extracted-content">
+                            <h3>Extracted Content</h3>
+                            <pre id="modalContent"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by Azure Functions & Mistral OCR</p>
+        </footer>
+    </div>
+
+    <!-- Config -->
+    <script>
+        // Azure Function App API URL
+        // For local development, use: 'http://localhost:7071/api'
+        const API_URL = 'https://docpipeline-dev-func.azurewebsites.net/api';
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>

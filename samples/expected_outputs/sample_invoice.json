@@ -1,0 +1,50 @@
+{
+  "document_id": "sample_invoice",
+  "extracted_at": "2024-01-15T10:30:00Z",
+  "model_version": "mistral-ocr-2503",
+  "page_count": 1,
+  "processing_time_ms": 1450,
+  "confidence": {
+    "overall": 0.92,
+    "is_low_confidence": false
+  },
+  "fields": [
+    {
+      "name": "Vendor",
+      "value": "Contoso Electronics",
+      "confidence": 0.95
+    },
+    {
+      "name": "Invoice Date",
+      "value": "January 5, 2024",
+      "confidence": 0.93
+    },
+    {
+      "name": "Invoice ID",
+      "value": "INV-2024-113",
+      "confidence": 0.98
+    },
+    {
+      "name": "Amount Due",
+      "value": "$1,950.00",
+      "confidence": 0.91
+    },
+    {
+      "name": "Payment Terms",
+      "value": "Net 30",
+      "confidence": 0.85
+    }
+  ],
+  "tables": [
+    {
+      "headers": ["Description", "Quantity", "Unit Price", "Total"],
+      "rows": [
+        ["Laptop 15-inch Pro", "1", "$1,950.00", "$1,950.00"]
+      ]
+    }
+  ],
+  "content": {
+    "raw_text": "Invoice\n\nFrom:\nContoso Electronics\n123 Tech Boulevard\nSeattle, WA 98101\n\nTo:\nAcme Corporation\n456 Business Park\nSan Francisco, CA 94102\n\nInvoice Details:\n- Invoice Number: INV-2024-113\n- Invoice Date: January 5, 2024\n- Due Date: February 4, 2024\n\nLine Items:\nDescription | Quantity | Unit Price | Total\nLaptop 15-inch Pro | 1 | $1,950.00 | $1,950.00\n\nSubtotal: $1,950.00\nTax (0%): $0.00\nTotal Due: $1,950.00",
+    "markdown": "# Invoice\n\n**From:**\nContoso Electronics\n123 Tech Boulevard\nSeattle, WA 98101\n\n**To:**\nAcme Corporation\n456 Business Park\nSan Francisco, CA 94102\n\n**Invoice Details:**\n- Invoice Number: INV-2024-113\n- Invoice Date: January 5, 2024\n- Due Date: February 4, 2024\n\n## Line Items\n\n| Description | Quantity | Unit Price | Total |\n|-------------|----------|------------|-------|\n| Laptop 15-inch Pro | 1 | $1,950.00 | $1,950.00 |\n\n**Subtotal:** $1,950.00\n**Tax (0%):** $0.00\n**Total Due:** $1,950.00"
+  }
+}

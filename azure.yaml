@@ -1,0 +1,34 @@
+name: ai-document-pipeline
+metadata:
+  template: ai-document-pipeline@0.0.1
+
+infra:
+  provider: bicep
+  path: infrastructure
+
+services:
+  api:
+    project: ./api
+    language: python
+    host: function
+
+hooks:
+  postprovision:
+    windows:
+      shell: pwsh
+      run: |
+        Write-Host "Infrastructure provisioned successfully!"
+        Write-Host "Function App URL: $env:FUNCTION_APP_URL"
+        Write-Host ""
+        Write-Host "Next steps:"
+        Write-Host "1. Add your Mistral API key to Key Vault:"
+        Write-Host "   az keyvault secret set --vault-name $env:KEY_VAULT_NAME --name MistralApiKey --value <your-key>"
+    posix:
+      shell: sh
+      run: |
+        echo "Infrastructure provisioned successfully!"
+        echo "Function App URL: ${FUNCTION_APP_URL}"
+        echo ""
+        echo "Next steps:"
+        echo "1. Add your Mistral API key to Key Vault:"
+        echo "   az keyvault secret set --vault-name ${KEY_VAULT_NAME} --name MistralApiKey --value <your-key>"

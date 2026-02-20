@@ -1,0 +1,14 @@
+# Default owners for everything
+* @your-username
+
+# Infrastructure
+/infrastructure/ @your-username
+
+# API/Backend
+/api/ @your-username
+
+# Frontend
+/frontend/ @your-username
+
+# CI/CD
+/.github/ @your-username
